@@ -95,11 +95,11 @@
 .about-section{
     min-height: 100vh;
     padding-block: 7.5rem 3rem;
-    border-bottom: var(--border);
+    /* border-bottom: var(--border); */
     display: flex;
 
     background-color: var(--bg);
-    border-bottom: 1px solid var(--border);
+    /* border-bottom: 1px solid var(--border); */
 }
 .about-grid{
     display: grid;
@@ -189,4 +189,7 @@
     animation: load 1s;
     animation-timeline: view();
     animation-range: entry 0% entry 90%;
+}
+.testimoni-section{
+    background-color: var(--bg);
 }
