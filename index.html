@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/styling.css">
     <title>Dimsum Ummu Furqon</title>
+    <script type="module" src="./js/main.js"></script>
 </head>
 <body>
     <header class="navbar">
@@ -36,8 +37,25 @@
                     <span class="cart-badges">0</span>
                 </div>
             </div>
+            <div class="hamburger">
+                <span>
+
+                </span>
+                <span>
+
+                </span>
+                <span></span>
+            </div>
         </nav>
     </header>
+    <aside class="side-bar">
+        <div class="side-bar-container">
+            <a href="#"><li>Home</li></a>
+            <a href="#about"><li>About</li></a>
+            <a href="#"><li>Menu</li></a>
+            <a href="#"><li>Contact</li></a>
+        </div>
+    </aside>
     <main>
         <section class="hero">
             <div class="container hero-grid">
@@ -66,7 +84,7 @@
         <section class="about-section" id="about">
             <div class="container about-grid">
                 <div class="left-content">
-                    <p class="about-title">&ndash; Our Philosophy</p>
+                    <p class="eyebrow">&ndash; Our Philosophy</p>
                     <h1>
                         Honest dimsum rooted in family hospitality.
                     </h1>
@@ -126,36 +144,25 @@
                 </div>
             </div>
         </section>
-        <section class="testimoni-section">
-            <div class="container testimoni-grid">
-                <div class="card-testimoni">
-                    <span class="testi-persen">
-                        85%
-                    </span>
-                    <h3 class="testi-title">
-                        Daging asli
-                    </h3>
+        <section class="menu-section" id="menu">
+            <div class="container">
+                <div class="menu-header">
+                    <div>
+                        <span class="eyebrow">&ndash; Our Menu</span>
+                        <h2 class="menu-title">Dibuat Fresh Setiap Hari</h2>
+                    </div>
+                    <p class="menu-intro">
+                        Pilih menu di bawah untuk membuat daftar pesanan instan. Setiap porsi disajikan hangat dengan saus khas buatan sendiri
+                    </p>
                 </div>
-                <div class="card-testimoni">
-                    <div class="card-testimoni">
-                    <span class="testi-persen">
-                        85%
-                    </span>
-                    <h3 class="testi-title">
-                        Daging asli
-                    </h3>
+                <div class="menu-tabs" role="tablist" aria-label="Menu Categories" >
+                    <button class="tab-btn active" aria-selected="true" data-category="All" data-filter-menu>Semua Pilihan</button>
+                    <button class="tab-btn" aria-selected="false" data-category="kukus" data-filter-menu>Dimsum Kukus</button>
+                    <button class="tab-btn" aria-selected="false" data-category="goreng" data-filter-menu>Dimsum Goreng</button>
+                    <button class="tab-btn" aria-selected="false" data-category="diet" data-filter-menu>Dimsum Diet</button>
+                    <button class="tab-btn" aria-selected="false" data-category="mentai" data-filter-menu>Dimsum Mentai</button>
                 </div>
-                </div>
-                <div class="card-testimoni">
-                    <div class="card-testimoni">
-                    <span class="testi-persen">
-                        85%
-                    </span>
-                    <h3 class="testi-title">
-                        Daging asli
-                    </h3>
-                </div>
-                </div>
+                <div class="menu-grid" id="menu-grid" aria-live="polite" data-menu-filter></div>
             </div>
         </section>
     </main>
