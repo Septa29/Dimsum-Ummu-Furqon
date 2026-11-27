@@ -75,6 +75,92 @@ export function renderMenu(containerEl){
     .join('');
 }
 
+// cart
+
+export function getCartSummary() {
+    let totalCount = 0;
+    let totalPrice = 0;
+
+    const items = Object.entries(state.cart)
+        .filter(([, qty]) => qty > 0)
+        .map(([id, qty]) => {
+            const menu = MENU_ITEMS.find(
+                (item) => item.id === id
+            );
+
+            if (!menu) return null;
+
+            const subtotal = menu.price * qty;
+
+            totalCount += qty;
+            totalPrice += subtotal;
+
+            return {
+                ...menu,
+                qty,
+                subtotal
+            };
+        })
+        .filter(Boolean);
+
+    return {
+        items,
+        totalCount,
+        totalPrice
+    };
+}
+
+export function cartRender(cartListEl, cartCountEl) {
+    const { items, totalCount, totalPrice } = getCartSummary();
+
+    // Update badge
+    if (cartCountEl) {
+        cartCountEl.textContent = totalCount;
+    }
+
+    // Update ringkasan cart
+    if (!cartListEl) return;
+
+    if (items.length === 0) {
+        cartListEl.innerHTML = `
+            <i class="fa-solid fa-bag-shopping"></i>
+            <div>
+                <h3 class="cart-desk">
+                    Belum ada item yang dipilih
+                </h3>
+                <p class="cartAdd-info">
+                    Tambahkan item untuk melakukan pemesanan
+                    langsung ke WhatsApp
+                </p>
+            </div>
+        `;
+
+        return;
+    }
+
+    cartListEl.innerHTML = `
+        <i class="fa-solid fa-bag-shopping"></i>
+        <div>
+            <h3 class="cart-desk">
+                ${totalCount} Item dipilih
+            </h3>
+
+            <p class="cartAdd-info">
+                Total: ${formatPrice(totalPrice)}
+            </p>
+
+            <ul class="cart-items">
+                ${items.map(item => `
+                    <li>
+                        ${item.name} × ${item.qty}
+                        — ${formatPrice(item.subtotal)}
+                    </li>
+                `).join('')}
+            </ul>
+        </div>
+    `;
+}
+
 export function setCategory(category, containerEl){
     state.category = category;
     renderMenu(containerEl)
@@ -82,6 +168,13 @@ export function setCategory(category, containerEl){
 
 export function adjustQuantity(itemId, delta, containerEl){
     const current = state.cart[itemId] || 0;
-    state.cart[itemId] = Math.max(0, current + delta);
+    const next = Math.max(0, current + delta);
+    if(next=== 0){
+        delete state.cart[itemId]
+    }else{
+        state.cart[itemId] = next
+    }
     renderMenu(containerEl)
+    getCartSummary()
 }
+

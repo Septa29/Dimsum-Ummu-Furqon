@@ -10,6 +10,9 @@
   --font-heading: 'Fraunces', serif;
   --font-body: 'DM Sans', sans-serif;
 }
+ul{
+    list-style: none;
+}
 
 html{
     scroll-behavior: smooth;
